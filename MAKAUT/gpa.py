@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter.ttk import Combobox
 from tkinter import messagebox
-
+ 
 class makaut:
     def __init__(self, root):
         self.root = root
@@ -23,7 +23,7 @@ class makaut:
         self.semester.pack(padx=5, pady=5)
 
         # Grade show
-        self.img = PhotoImage(file="grd.png")
+        self.img = PhotoImage(file="grade.png")
         self.grade = Label(self.root, image=self.img)
         self.grade.pack()
 
