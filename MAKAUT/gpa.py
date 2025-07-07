@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter.ttk import Combobox
 from tkinter import messagebox
-# import bar
 
 class makaut:
     def __init__(self, root):
@@ -11,24 +10,39 @@ class makaut:
 
         # Create a dept
         self.dept = LabelFrame(root,text="DEPARTMENT",font=(18))
-        self.dept.pack(padx=10, pady=10)
-        Button(self.dept, text="COMP", font=("Cambria",15),command=self.sms_cse).grid(pady=5,padx=5,row=0,column=0)
-        Button(self.dept, text="ECE", font=("Cambria",15),command=self.sms_ece).grid(pady=5,padx=5,row=0,column=1)
-        Button(self.dept, text="1st YEAR", font=("Cambria",15),command=self.first_year).grid(pady=5,padx=5,row=0,column=2)
+        self.dept.pack()
+        self.but1=Button(self.dept, text="COMP", font=("Cambria",15),command=self.sms_cse)
+        self.but1.grid(pady=5,padx=5,row=0,column=1)
+        self.but2=Button(self.dept, text="ECE", font=("Cambria",15),command=self.sms_ece)
+        self.but2.grid(pady=5,padx=5,row=0,column=2)
+        self.but3=Button(self.dept, text="1st YEAR", font=("Cambria",15),command=self.first_year)
+        self.but3.grid(pady=5,padx=5,row=0,column=0)
 
         # Create a semester
         self.semester = LabelFrame(root,text="SEMESTER",font=(18))
-        self.semester.pack(padx=10, pady=10)
+        self.semester.pack(padx=5, pady=5)
+
+        # Grade show
+        self.img = PhotoImage(file="grd.png")
+        self.grade = Label(self.root, image=self.img)
+        self.grade.pack()
 
         # Create a marks
         self.marks = LabelFrame(root,text="MARKS",font=(18))
-        self.marks.pack(padx=10, pady=10)
+        self.marks.pack()
 
         # Calulator
-        Button(self.root,text="CGPA",command=self.cal).pack()
+        Button(self.root,text="CGPA",font=("Arial",12),
+               command=self.cal).pack(padx=5,pady=5)
         # Answer
         self.calc=Label(self.root,text="",font=("Arial",18,"bold"))
         self.calc.pack()
+
+    def enabled(self,block):
+        for w in block.winfo_children():
+            if w["state"]=="disabled":
+                w["state"]=="normal"
+                break
 
     def widget_destroy(self,frm):
         for wid in frm.winfo_children():
@@ -108,22 +122,29 @@ class makaut:
         
         def sms3():
             self.widget_destroy(self.marks)
-            credit={}
+            credit={"Elec.Dev":3,"DSD":3,"Sig&Sys":3,
+                    "NET.Theory":3,"DSA":3,"MATH":3,
+                    "Elec.Dev(LAB)":2,"DSD(LAB)":2,"DSA(LAB)":1}
             self.widget(credit)
 
         Button(self.semester,text="SMS 3",font=('Cambria',15),
-               command=sms3).pack()
+               command=sms3).grid(row=0,column=0,padx=5,pady=5)
         Button(self.semester,text="SMS 4",font=('Cambria',15),
-               command=sms4).pack()
+               command=sms4).grid(row=0,column=1,padx=5,pady=5)
 
     def cal(self):
         ans=total=0
+        arr=[("Math",7),("Eng",5)]
         try:
             for i in self.data:
                 ans += (self.rule[self.data[i][1].get()]*self.data[i][0])
                 total += self.data[i][0]
-        
+            
+            #testing
+            # bar.bar_chart(arr)
+
             self.calc.config(text=str(round(ans/total,2)))
+
         except:
             messagebox.showerror("ERROR","Few subject's Grade neither assign nor valid!!❌")
 
