@@ -151,7 +151,7 @@ class makaut:
 
 if __name__ == "__main__":
     root = Tk()
-    root.title("CPGA Calculator")
-    Label(root,text="CGPA Prediction",font=("Helvetica",30, "bold"),fg="#0059b3", bg="#f0f8ff").pack(side=TOP)
+    root.title("SPGA Calculator")
+    Label(root,text="SGPA Prediction",font=("Helvetica",30, "bold"),fg="#0059b3", bg="#f0f8ff").pack(side=TOP)
     makaut(root)
     root.mainloop()
