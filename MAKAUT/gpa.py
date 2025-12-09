@@ -102,11 +102,21 @@ class makaut:
                     "BIO":3,"CA":3,"EVS":1,
                     "DAA(LAB):":2,"CA(LAB)":2}
             self.widget(credit)
+        
+        def sms5():
+            self.widget_destroy(self.marks)
+            credit={"OS":3,"IM":3,"SWE":3,
+                    "OOPS":3,"AI":3,"CG":3,
+                    "OOPS(LAB):":2,"OS(LAB)":2,
+                    "SWE(LAB)":2}
+            self.widget(credit)
 
         Button(self.semester,text="SMS 3",font=("Cambria",15),
                command=sms3).grid(row=0,column=0,padx=5)
         Button(self.semester,text="SMS 4",font=("Cambria",15),
                command=sms4).grid(row=0,column=1,padx=5)
+        Button(self.semester,text="SMS 5",font=("Cambria",15),
+               command=sms5).grid(row=0,column=2,padx=5)
       
     def sms_ece(self): #ECE
         self.widget_destroy(self.semester)
@@ -128,13 +138,13 @@ class makaut:
             self.widget(credit)
 
         Button(self.semester,text="SMS 3",font=('Cambria',15),
-               command=sms3).grid(row=0,column=0,padx=5,pady=5)
+               command=sms3).grid(row=0,column=0,padx=5)
         Button(self.semester,text="SMS 4",font=('Cambria',15),
-               command=sms4).grid(row=0,column=1,padx=5,pady=5)
+               command=sms4).grid(row=0,column=1,padx=5)
 
     def cal(self):
         ans=total=0
-        arr=[("Math",7),("Eng",5)]
+        # arr=[("Math",7),("Eng",5)]
         try:
             for i in self.data:
                 ans += (self.rule[self.data[i][1].get()]*self.data[i][0])
@@ -151,7 +161,8 @@ class makaut:
 
 if __name__ == "__main__":
     root = Tk()
-    root.title("SPGA Calculator")
-    Label(root,text="SGPA Prediction",font=("Helvetica",30, "bold"),fg="#0059b3", bg="#f0f8ff").pack(side=TOP)
+    root.title("CPGA Calculator")
+    Label(root,text="GPA Prediction",font=("Helvetica",30, "bold"),
+          fg="#0059b3", bg="#f0f8ff").pack(side=TOP)
     makaut(root)
     root.mainloop()
